@@ -1,7 +1,15 @@
+import Navbar from "./components/Navbar";
+import AddUser from "./components/AddUser";
+import UserRecords from "./components/UserRecords";
+
 export default function App() {
   return (
-    <div>
-      <h1>Hello World</h1>
+    <div className="container">
+      <div className="container-fluid">
+        <Navbar />
+        <AddUser />
+        <UserRecords />
+      </div>
     </div>
   );
 }
