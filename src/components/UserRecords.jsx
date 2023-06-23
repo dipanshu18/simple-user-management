@@ -1,6 +1,8 @@
-import { FaPen, FaTrash } from "react-icons/fa";
+import UserRow from "./UserRow";
+import { useSelector } from "react-redux";
 
 export default function UserRecords() {
+  const users = useSelector((state) => state.users);
   return (
     <div>
       <hr />
@@ -8,7 +10,6 @@ export default function UserRecords() {
       <table className="table table-info table-bordered table-striped table-hover">
         <thead>
           <tr>
-            <th scope="col">#</th>
             <th scope="col">User Name</th>
             <th scope="col">Email</th>
             <th scope="col">Phone No.</th>
@@ -17,70 +18,7 @@ export default function UserRecords() {
           </tr>
         </thead>
         <tbody className="table-group-divider">
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>
-              <a href="#">
-                <FaPen />
-              </a>
-            </td>
-            <td>
-              <a href="#">
-                <FaTrash />
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>
-              <a href="#">
-                <FaPen />
-              </a>
-            </td>
-            <td>
-              <a href="#">
-                <FaTrash />
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>
-              <a href="#">
-                <FaPen />
-              </a>
-            </td>
-            <td>
-              <a href="#">
-                <FaTrash />
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>
-              <a href="#">
-                <FaPen />
-              </a>
-            </td>
-            <td>
-              <a href="#">
-                <FaTrash />
-              </a>
-            </td>
-          </tr>
+          {users && users.map((user) => <UserRow user={user} key={user.id} />)}
         </tbody>
       </table>
     </div>

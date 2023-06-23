@@ -1,14 +1,24 @@
 import { useState } from "react";
 import { FaUser } from "react-icons/fa";
+import { v4 as uuidv4 } from "uuid";
+import { addUser } from "../features/user";
+import { useDispatch } from "react-redux";
 
 export default function AddUser() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
+  const dispatch = useDispatch();
+
   const addUserHandler = (e) => {
     e.preventDefault();
-    console.log(`${name}, ${email}, ${phone}`);
+    if (!name || !email || !phone) return alert("Please enter all the fields");
+
+    dispatch(addUser({ id: uuidv4(), name, email, phone }));
+    setName("");
+    setEmail("");
+    setPhone("");
   };
   return (
     <div className="my-4 d-flex justify-content-center">
@@ -75,12 +85,12 @@ export default function AddUser() {
                     type="tel"
                   />
                 </div>
+                <div className="modal-footer d-flex justify-content-center">
+                  <button type="submit" className="btn btn-primary">
+                    Create
+                  </button>
+                </div>
               </form>
-            </div>
-            <div className="modal-footer d-flex justify-content-center">
-              <button type="submit" className="btn btn-primary">
-                Create
-              </button>
             </div>
           </div>
         </div>
